@@ -79,7 +79,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Util.updateField(emp::setEmail, emp.getEmail(), update.email());
 		Util.updateField(emp::setPhoneNumber, emp.getPhoneNumber(), update.phoneNumber());
 		employeeRepo.save(emp);
-		log.info("Department: '{}' updated", emp.getId());
+		log.info("Employee: '{}' updated", emp.getId());
 		return EmployeeResponse.basicResponse(emp);
 	}
 
