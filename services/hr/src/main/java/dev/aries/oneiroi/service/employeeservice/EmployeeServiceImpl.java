@@ -79,7 +79,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Util.updateField(emp::setEmail, emp.getEmail(), update.email());
 		Util.updateField(emp::setPhoneNumber, emp.getPhoneNumber(), update.phoneNumber());
 		employeeRepo.save(emp);
-		log.info("Employee: '{}' updated", emp.getId());
+		log.info("Personal Information for employee: '{}' has been updated", emp.getId());
 		return EmployeeResponse.basicResponse(emp);
 	}
 
@@ -92,7 +92,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			Rank rank = Rank.valueOf(pr.rank().toUpperCase());
 			employee.setRank(rank);
 			promoted.add(employee);
-			log.info("Employee: '{}' has been promoted to rank: '{}'", employee.fullName(), rank.name());
+			log.info("Rank of employee: '{}' has been updated to: '{}'", employee.fullName(), rank.name());
 		}
 		employeeRepo.saveAll(promoted);
 		return promoted.stream()
