@@ -4,7 +4,7 @@ import java.util.List;
 
 import dev.aries.oneiroi.dto.EmployeeRequest;
 import dev.aries.oneiroi.dto.EmployeeResponse;
-import dev.aries.oneiroi.dto.PromotionRequest;
+import dev.aries.oneiroi.dto.RankChangeRequest;
 import dev.aries.oneiroi.dto.TransferRequest;
 import dev.aries.oneiroi.model.Employee;
 
@@ -20,7 +20,7 @@ public interface EmployeeService {
 
 	EmployeeResponse updateEmployeeInfo(Integer id, EmployeeRequest request);
 
-	List<EmployeeResponse> promoteEmployees(PromotionRequest request);
+	List<EmployeeResponse> updateEmployeesRanks(RankChangeRequest request);
 
 	List<EmployeeResponse> transferEmployees(TransferRequest request);
 

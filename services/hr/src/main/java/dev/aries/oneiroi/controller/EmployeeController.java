@@ -4,7 +4,7 @@ import java.util.List;
 
 import dev.aries.oneiroi.dto.EmployeeRequest;
 import dev.aries.oneiroi.dto.EmployeeResponse;
-import dev.aries.oneiroi.dto.PromotionRequest;
+import dev.aries.oneiroi.dto.RankChangeRequest;
 import dev.aries.oneiroi.dto.TransferRequest;
 import dev.aries.oneiroi.model.Employee;
 import dev.aries.oneiroi.service.employeeservice.EmployeeService;
@@ -55,9 +55,9 @@ public class EmployeeController {
 		return ResponseEntity.ok(employeeService.updateEmployeeInfo(id, request));
 	}
 
-	@PutMapping("/promotions")
-	public ResponseEntity<List<EmployeeResponse>> promoteEmployee(@RequestBody PromotionRequest request) {
-		return ResponseEntity.ok(employeeService.promoteEmployees(request));
+	@PutMapping("/rank-updates")
+	public ResponseEntity<List<EmployeeResponse>> updateEmployeeRank(@RequestBody RankChangeRequest request) {
+		return ResponseEntity.ok(employeeService.updateEmployeesRanks(request));
 	}
 
 	@PutMapping("/transfers")

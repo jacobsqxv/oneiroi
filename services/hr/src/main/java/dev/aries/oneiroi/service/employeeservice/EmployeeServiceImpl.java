@@ -6,7 +6,7 @@ import java.util.List;
 import dev.aries.oneiroi.constant.ExceptionConstant;
 import dev.aries.oneiroi.dto.EmployeeRequest;
 import dev.aries.oneiroi.dto.EmployeeResponse;
-import dev.aries.oneiroi.dto.PromotionRequest;
+import dev.aries.oneiroi.dto.RankChangeRequest;
 import dev.aries.oneiroi.dto.TransferRequest;
 import dev.aries.oneiroi.model.Department;
 import dev.aries.oneiroi.model.Employee;
@@ -85,9 +85,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional
-	public List<EmployeeResponse> promoteEmployees(PromotionRequest request) {
+	public List<EmployeeResponse> updateEmployeesRanks(RankChangeRequest request) {
 		List<Employee> promoted = new ArrayList<>();
-		for (PromotionRequest.Promotion pr: request.promotions()) {
+		for (RankChangeRequest.RankChange pr: request.rankChanges()) {
 			Employee employee = getEmployee(pr.employeeId());
 			Rank rank = Rank.valueOf(pr.rank().toUpperCase());
 			employee.setRank(rank);

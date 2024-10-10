@@ -2,10 +2,10 @@ package dev.aries.oneiroi.dto;
 
 import java.util.List;
 
-public record PromotionRequest(
-		List<Promotion> promotions
+public record RankChangeRequest(
+		List<RankChange> rankChanges
 ) {
-	public record Promotion(
+	public record RankChange(
 			Integer employeeId,
 			String rank
 	) {}
