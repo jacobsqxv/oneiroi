@@ -33,12 +33,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public DepartmentResponse validate(Integer id) {
-		Department dept = getDepartment(id);
-		return DepartmentResponse.basicResponse(dept);
-	}
-
-	@Override
 	public DepartmentResponse addNewDepartment(DepartmentRequest request) {
 		checkName(request.name());
 		Department newDept = new Department(

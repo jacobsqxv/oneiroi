@@ -10,8 +10,6 @@ public interface DepartmentService {
 
 	Department getDepartment(Integer id);
 
-	DepartmentResponse validate(Integer id);
-
 	DepartmentResponse addNewDepartment(DepartmentRequest request);
 
 	List<DepartmentResponse> getAllDepartments();

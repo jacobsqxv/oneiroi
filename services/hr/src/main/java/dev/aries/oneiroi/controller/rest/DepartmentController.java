@@ -1,10 +1,9 @@
-package dev.aries.oneiroi.controller;
+package dev.aries.oneiroi.controller.rest;
 
 import java.util.List;
 
 import dev.aries.oneiroi.dto.DepartmentResponse;
 import dev.aries.oneiroi.dto.DepartmentRequest;
-import dev.aries.oneiroi.model.Department;
 import dev.aries.oneiroi.service.departmentservice.DepartmentService;
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -26,12 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class DepartmentController {
 
 	private final DepartmentService departmentService;
-
-	//	Used by other microservices to validate a department by id
-	@GetMapping("/validate")
-	public ResponseEntity<Department> validateDeptId(@RequestParam Integer id) {
-		return ResponseEntity.ok(departmentService.getDepartment(id));
-	}
 
 	@PostMapping
 	public ResponseEntity<DepartmentResponse> addNewDepartment(@RequestBody DepartmentRequest request) {

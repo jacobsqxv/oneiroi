@@ -1,4 +1,4 @@
-package dev.aries.oneiroi.controller;
+package dev.aries.oneiroi.controller.rest;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ import dev.aries.oneiroi.dto.EmployeeRequest;
 import dev.aries.oneiroi.dto.EmployeeResponse;
 import dev.aries.oneiroi.dto.RankChangeRequest;
 import dev.aries.oneiroi.dto.TransferRequest;
-import dev.aries.oneiroi.model.Employee;
 import dev.aries.oneiroi.service.employeeservice.EmployeeService;
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,12 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmployeeController {
 
 	private final EmployeeService employeeService;
-
-	//	Used by other microservices to validate an employee by id
-	@GetMapping("/validate")
-	public ResponseEntity<Employee> validateEmployeeId(@RequestParam Integer id) {
-		return ResponseEntity.ok(employeeService.getEmployee(id));
-	}
 
 	@PostMapping
 	public ResponseEntity<EmployeeResponse> addNewEmployee(@RequestBody EmployeeRequest request) {
