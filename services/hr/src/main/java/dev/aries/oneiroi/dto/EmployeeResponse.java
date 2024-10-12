@@ -48,7 +48,22 @@ public record EmployeeResponse(
 				DepartmentResponse.listResponse(employee.getDepartment()),
 				employee.getRank().toString(),
 				employee.getStatus().toString(),
-				employee.getHireDate());
+				employee.getCreatedAt());
 	}
 
+	public static EmployeeResponse transferResponse(Employee employee) {
+		return EmployeeResponse.builder()
+				.id(employee.getId())
+				.fullName(employee.fullName())
+				.department(DepartmentResponse.listResponse(employee.getDepartment()))
+				.build();
+	}
+
+	public static EmployeeResponse rankUpdateResponse(Employee employee) {
+		return EmployeeResponse.builder()
+				.id(employee.getId())
+				.fullName(employee.fullName())
+				.rank(employee.getRank().toString())
+				.build();
+	}
 }

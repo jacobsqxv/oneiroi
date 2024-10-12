@@ -5,6 +5,7 @@ import java.util.List;
 import dev.aries.oneiroi.constant.ExceptionConstant;
 import dev.aries.oneiroi.dto.DepartmentRequest;
 import dev.aries.oneiroi.dto.DepartmentResponse;
+import dev.aries.oneiroi.dto.GenericResponse;
 import dev.aries.oneiroi.model.Department;
 import dev.aries.oneiroi.model.DepartmentStatus;
 import dev.aries.oneiroi.repository.DepartmentRepository;
@@ -33,6 +34,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
+	@Transactional
 	public DepartmentResponse addNewDepartment(DepartmentRequest request) {
 		checkName(request.name());
 		Department newDept = new Department(
@@ -42,7 +44,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 		);
 		departmentRepo.save(newDept);
 		log.info("New department: '{}' added", newDept.getName());
-		return DepartmentResponse.basicResponse(newDept);
+		return DepartmentResponse.fullResponse(newDept);
 	}
 
 	private void checkName(String name) {
@@ -67,7 +69,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional
 	public DepartmentResponse updateInfo(Integer id, DepartmentRequest request) {
 		Department dept = getDepartment(id);
 
@@ -84,11 +86,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public Void deleteDepartment(Integer id) {
+	public GenericResponse deleteDepartment(Integer id) {
 		Department department = getDepartment(id);
 		department.setStatus(DepartmentStatus.DELETED);
 		departmentRepo.save(department);
 		log.info("Department: '{}' deleted successfully", department.getName());
-		return null;
+		String response = String.format("Department: '%s' deleted successfully", department.getName());
+		return new GenericResponse(response);
 	}
 }

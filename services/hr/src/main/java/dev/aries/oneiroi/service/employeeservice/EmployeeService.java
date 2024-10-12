@@ -4,6 +4,7 @@ import java.util.List;
 
 import dev.aries.oneiroi.dto.EmployeeRequest;
 import dev.aries.oneiroi.dto.EmployeeResponse;
+import dev.aries.oneiroi.dto.GenericResponse;
 import dev.aries.oneiroi.dto.RankChangeRequest;
 import dev.aries.oneiroi.dto.TransferRequest;
 import dev.aries.oneiroi.model.Employee;
@@ -24,5 +25,5 @@ public interface EmployeeService {
 
 	List<EmployeeResponse> transferEmployees(TransferRequest request);
 
-	Void terminateEmployees(List<Integer> employeeIds);
+	GenericResponse terminateEmployees(List<Integer> employeeIds);
 }

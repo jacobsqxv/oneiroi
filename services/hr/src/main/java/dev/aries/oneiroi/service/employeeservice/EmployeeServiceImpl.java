@@ -6,6 +6,7 @@ import java.util.List;
 import dev.aries.oneiroi.constant.ExceptionConstant;
 import dev.aries.oneiroi.dto.EmployeeRequest;
 import dev.aries.oneiroi.dto.EmployeeResponse;
+import dev.aries.oneiroi.dto.GenericResponse;
 import dev.aries.oneiroi.dto.RankChangeRequest;
 import dev.aries.oneiroi.dto.TransferRequest;
 import dev.aries.oneiroi.model.Department;
@@ -51,7 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		);
 		employeeRepo.save(newEmployee);
 		log.info("New employee: '{}' added", newEmployee.fullName());
-		return EmployeeResponse.basicResponse(newEmployee);
+		return EmployeeResponse.fullResponse(newEmployee);
 	}
 
 	@Override
@@ -96,7 +97,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		employeeRepo.saveAll(promoted);
 		return promoted.stream()
-				.map(EmployeeResponse::basicResponse)
+				.map(EmployeeResponse::rankUpdateResponse)
 				.toList();
 	}
 
@@ -113,13 +114,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		employeeRepo.saveAll(transferred);
 		return transferred.stream()
-				.map(EmployeeResponse::basicResponse)
+				.map(EmployeeResponse::transferResponse)
 				.toList();
 	}
 
 	@Override
 	@Transactional
-	public Void terminateEmployees(List<Integer> employeeIds) {
+	public GenericResponse terminateEmployees(List<Integer> employeeIds) {
 		List<Employee> terminated = new ArrayList<>();
 		for(Integer id: employeeIds) {
 			Employee employee = getEmployee(id);
@@ -128,7 +129,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 			log.info("Employee: '{}' has been terminated", employee.fullName());
 		}
 		employeeRepo.saveAll(terminated);
-		return null;
+		String response = String.format("Employees: %s have been fired", employeeIds);
+		return new GenericResponse(response);
 	}
 
 }

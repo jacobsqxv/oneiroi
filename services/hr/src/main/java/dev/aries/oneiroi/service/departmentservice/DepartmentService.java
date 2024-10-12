@@ -4,6 +4,7 @@ import java.util.List;
 
 import dev.aries.oneiroi.dto.DepartmentRequest;
 import dev.aries.oneiroi.dto.DepartmentResponse;
+import dev.aries.oneiroi.dto.GenericResponse;
 import dev.aries.oneiroi.model.Department;
 
 public interface DepartmentService {
@@ -18,5 +19,5 @@ public interface DepartmentService {
 
 	DepartmentResponse updateInfo(Integer id, DepartmentRequest request);
 
-	Void deleteDepartment(Integer id);
+	GenericResponse deleteDepartment(Integer id);
 }
