@@ -50,7 +50,7 @@ public class Employee {
 	private EmployeeStatus status;
 	@CreatedDate
 	@Column(updatable = false, nullable = false)
-	private LocalDateTime hireDate;
+	private LocalDateTime createdAt;
 
 	public Employee(String firstName, String lastName, String email, String phoneNumber, Department department, Rank rank) {
 		this.firstName = firstName;
@@ -74,10 +74,9 @@ public class Employee {
 				", lastName='" + lastName + '\'' +
 				", email='" + email + '\'' +
 				", phoneNumber='" + phoneNumber + '\'' +
-				", department=" + department +
 				", rank=" + rank.toString() +
 				", status=" + status.toString() +
-				", hireDate=" + hireDate +
+				", createdAt=" + createdAt +
 				'}';
 	}
 }

@@ -68,7 +68,6 @@ public class Department {
 				", name='" + name + '\'' +
 				", description='" + description + '\'' +
 				", budget=" + budget +
-				", employees=" + employees +
 				", status=" + status.toString() +
 				", createdAt=" + createdAt +
 				'}';
