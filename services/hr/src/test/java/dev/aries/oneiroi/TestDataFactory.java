@@ -2,9 +2,11 @@ package dev.aries.oneiroi;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import dev.aries.oneiroi.dto.DepartmentRequest;
+import dev.aries.oneiroi.dto.DepartmentResponse;
 import dev.aries.oneiroi.dto.EmployeeRequest;
 import dev.aries.oneiroi.dto.RankChangeRequest;
 import dev.aries.oneiroi.dto.TransferRequest;
@@ -20,7 +22,9 @@ public class TestDataFactory {
 			.name("New Department")
 			.description("New description")
 			.budget(10000.00)
-			.status(DepartmentStatus.ACTIVE);
+			.employees(new HashSet<>())
+			.status(DepartmentStatus.ACTIVE)
+			.createdAt(LocalDateTime.now());
 
 	private static final Employee.EmployeeBuilder EMPLOYEE_BUILDER = Employee.builder()
 			.firstName("Jane")
@@ -30,7 +34,7 @@ public class TestDataFactory {
 			.department(DEPT_BUILDER.id(2).build())
 			.rank(Rank.EXPERT)
 			.status(EmployeeStatus.ACTIVE)
-			.hireDate(LocalDateTime.of(2000, 1,1, 0, 0));
+			.createdAt(LocalDateTime.now());
 
 	public static DepartmentRequest deptRequest() {
 		return new DepartmentRequest(
@@ -89,5 +93,12 @@ public class TestDataFactory {
 		employeeIds.add(1);
 		employeeIds.add(2);
 		return employeeIds;
+	}
+
+	public static DepartmentResponse newDeptResponse(String name) {
+		return new DepartmentResponse(
+				1, name, "Description", 20.0,
+				new HashSet<>(),
+				DepartmentStatus.ACTIVE.toString(),LocalDateTime.now());
 	}
 }

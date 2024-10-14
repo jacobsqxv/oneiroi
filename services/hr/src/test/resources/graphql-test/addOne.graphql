@@ -1,0 +1,10 @@
+mutation DepartmentTest($request: DepartmentRequest! = {
+    name: "Department",
+    description: "This is a description",
+    budget: 200.00
+}) {
+    addNewDepartment(request: $request) {
+        name
+        description
+    }
+}

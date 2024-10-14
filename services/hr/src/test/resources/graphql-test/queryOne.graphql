@@ -1,0 +1,8 @@
+query GetDepartmentById {
+    getDepartment(id: 1) {
+        id
+        name
+        description
+        budget
+    }
+}

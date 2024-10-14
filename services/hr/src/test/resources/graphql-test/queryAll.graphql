@@ -1,0 +1,6 @@
+query GetAllDepartments {
+    getAllDepartments {
+        id
+        name
+    }
+}
