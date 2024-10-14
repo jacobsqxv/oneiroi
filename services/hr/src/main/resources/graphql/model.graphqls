@@ -1,0 +1,41 @@
+scalar DateTime @specifiedBy(url:"https://scalars.graphql.org/andimarek/date-time.html")
+
+type Department {
+    id: ID!
+    name: String
+    description: String
+    budget: Float
+    employees: [Employee!]!
+    status: DepartmentStatus
+    createdAt: DateTime
+}
+
+type Employee {
+    id: ID!
+    firstName: String
+    lastName: String
+    email: String
+    phoneNumber: String
+    department: Department
+    rank: Rank
+    status: EmployeeStatus
+    hireDate: DateTime
+}
+
+enum DepartmentStatus {
+    ACTIVE
+    DELETED
+}
+
+enum EmployeeStatus {
+    PROBATION
+    ACTIVE
+    FIRED
+}
+
+enum Rank {
+    JUNIOR
+    MID_LEVEL
+    SENIOR
+    EXPERT
+}

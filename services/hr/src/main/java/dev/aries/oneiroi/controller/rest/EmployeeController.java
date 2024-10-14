@@ -4,6 +4,7 @@ import java.util.List;
 
 import dev.aries.oneiroi.dto.EmployeeRequest;
 import dev.aries.oneiroi.dto.EmployeeResponse;
+import dev.aries.oneiroi.dto.GenericResponse;
 import dev.aries.oneiroi.dto.RankChangeRequest;
 import dev.aries.oneiroi.dto.TransferRequest;
 import dev.aries.oneiroi.service.employeeservice.EmployeeService;
@@ -58,8 +59,7 @@ public class EmployeeController {
 	}
 
 	@DeleteMapping("/terminate")
-	public ResponseEntity<Void> terminateEmployees(@RequestBody List<Integer> employeeIds) {
-		return new ResponseEntity<>(employeeService.terminateEmployees(employeeIds),
-				HttpStatus.NO_CONTENT);
+	public ResponseEntity<GenericResponse> terminateEmployees(@RequestBody List<Integer> employeeIds) {
+		return ResponseEntity.ok(employeeService.terminateEmployees(employeeIds));
 	}
 }

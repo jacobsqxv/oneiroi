@@ -4,6 +4,7 @@ import java.util.List;
 
 import dev.aries.oneiroi.dto.DepartmentResponse;
 import dev.aries.oneiroi.dto.DepartmentRequest;
+import dev.aries.oneiroi.dto.GenericResponse;
 import dev.aries.oneiroi.service.departmentservice.DepartmentService;
 import lombok.RequiredArgsConstructor;
 
@@ -46,7 +47,7 @@ public class DepartmentController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteDepartment(@PathVariable Integer id) {
-		return new ResponseEntity<>(departmentService.deleteDepartment(id), HttpStatus.NO_CONTENT);
+	public ResponseEntity<GenericResponse> deleteDepartment(@PathVariable Integer id) {
+		return ResponseEntity.ok(departmentService.deleteDepartment(id));
 	}
 }

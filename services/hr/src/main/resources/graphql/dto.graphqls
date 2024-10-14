@@ -1,0 +1,102 @@
+directive @Positive(message: String = "graphql.validation.Positive.message") on INPUT_FIELD_DEFINITION
+directive @ContainerNotEmpty(message : String = "graphql.validation.ContainerNotEmpty.message") on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+input DepartmentRequest {
+    name: String
+    description: String
+    budget: Float @Positive
+}
+
+input EmployeeRequest {
+    firstName: String
+    lastName: String
+    email: String
+    phoneNumber: String
+    departmentId: Int
+    rank: String
+}
+
+type EmployeeResponse {
+    id: ID!
+    fullName: String
+    email: String
+    phoneNumber: String
+    department: ListDeptResponse!
+    rank: String
+    status: String
+    hireDate: DateTime
+}
+
+type DepartmentResponse {
+    id: ID!
+    name: String
+    description: String
+    budget: Float
+    employees: [ListEmpResponse!]!
+    status: String
+    createdAt: DateTime
+}
+
+input RankChangeRequest {
+    rankChanges: [RankChange!]! @ContainerNotEmpty
+}
+
+input RankChange {
+    employeeId: Int
+    rank: String
+}
+
+input TransferRequest {
+    transfers: [Transfer!]! @ContainerNotEmpty
+}
+
+input Transfer {
+    employeeId: Int
+    departmentId: Int
+}
+
+type GenericResponse {
+    response: String!
+}
+
+type BasicDeptResponse {
+    id: ID!
+    name: String
+    description: String
+    budget: Float
+    status: String
+}
+
+type ListDeptResponse {
+    id: ID!
+    name: String
+    status: String
+}
+
+type BasicEmpResponse {
+    id: ID!
+    fullName: String
+    email: String
+    phoneNumber: String
+    rank: String
+    status: String
+}
+
+type ListEmpResponse {
+    id: ID!
+    fullName: String
+    email: String
+    rank: String
+}
+
+type TransferResponse {
+    id: ID!
+    fullName: String
+    department: ListDeptResponse!
+}
+
+type RankUpdateResponse {
+    id: ID!
+    fullName: String
+    rank: String
+}

@@ -1,0 +1,29 @@
+type Query {
+    "Return a list of all departments"
+    getAllDepartments: [ListDeptResponse!]!
+    "Return detailed information about a department by ID"
+    getDepartment(id: ID!): DepartmentResponse
+    "Return a list of all employees"
+    getAllEmployees: [ListEmpResponse!]!
+    "Return detailed information about an employee by ID"
+    getEmployee(id: ID!): EmployeeResponse
+}
+
+type Mutation {
+    "Add a new department"
+    addNewDepartment(request: DepartmentRequest!): DepartmentResponse
+    "Update department's information"
+    updateDepartmentInfo(id: ID!, request: DepartmentRequest!): BasicDeptResponse
+    "Archive a department"
+    deleteDepartment(id: ID!): GenericResponse!
+    "Add a new employee"
+    addNewEmployee(request: EmployeeRequest!): EmployeeResponse
+    "Update employee's personal information"
+    updateEmployeeInfo(id: ID!, request: EmployeeRequest!): BasicEmpResponse
+    "Update the ranks of a list of employees"
+    updateEmployeesRanks(request: RankChangeRequest!): [RankUpdateResponse!]!
+    "Transfer employees to another department"
+    transferEmployees(request: TransferRequest!): [TransferResponse!]!
+    "Fire a list of employees"
+    terminateEmployees(employeeIds: [Int]!): GenericResponse!
+}
