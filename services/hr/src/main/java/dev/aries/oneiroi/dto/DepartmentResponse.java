@@ -16,6 +16,7 @@ public record DepartmentResponse(
 		String description,
 		Double budget,
 		Set<EmployeeResponse> employees,
+		String status,
 		LocalDateTime createdAt
 ) {
 
@@ -28,6 +29,7 @@ public record DepartmentResponse(
 				dept.getEmployees().stream()
 						.map(EmployeeResponse::listResponse)
 						.collect(Collectors.toSet()),
+				dept.getStatus().toString(),
 				dept.getCreatedAt());
 	}
 
@@ -37,6 +39,7 @@ public record DepartmentResponse(
 				.name(dept.getName())
 				.description(dept.getDescription())
 				.budget(dept.getBudget())
+				.status(dept.getStatus().toString())
 				.build();
 	}
 
@@ -44,6 +47,7 @@ public record DepartmentResponse(
 		return DepartmentResponse.builder()
 				.id(dept.getId())
 				.name(dept.getName())
+				.status(dept.getStatus().toString())
 				.build();
 	}
 }
