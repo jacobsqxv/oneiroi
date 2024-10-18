@@ -1,0 +1,8 @@
+
+rootProject.name = 'oneiroi'
+
+include 'configuration'
+include 'discovery'
+include 'auth'
+include 'hr'
+include 'gateway'
